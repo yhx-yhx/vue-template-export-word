@@ -1,40 +1,48 @@
-name: Deploy to Public Repo
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout private repo
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
-        run: npm run build
-
-      - name: Deploy to public repo
-        run: |
-          # Clone the public repo  
-          git clone https://github.com/yhx-yhx/vue-template-export-word-dist.git yhx825-pdf-search-demo-dist
-          cd yhx825-pdf-search-demo-dist  
-
-          # Copy built files to public repo  
-          cp -r dist .
-
-          # Add, commit, and push changes to public repo  
-          git config --global user.name "yhx"  
+name: Deploy to Public Repo  
+  
+on:  
+  push:  
+    branches:  
+      - main  
+  
+jobs:  
+  build-and-deploy:  
+    runs-on: ubuntu-latest  
+    steps:  
+      - name: Checkout private repo  
+        uses: actions/checkout@v2  
+        with:  
+          fetch-depth: 0  
+  
+      - name: Install dependencies  
+        run: npm install  
+  
+      - name: Build project  
+        run: npm run build  
+  
+      - name: Checkout public repo  
+        uses: actions/checkout@v2  
+        with:  
+          repository: yhx-yhx/vue-template-export-word-dist
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  
+          path: public-repo  
+  
+      - name: Copy built files to public repo  
+        run: |  
+          cp -r .vitepress/dist/* public-repo/  
+   
+      - name: Configure Git  
+        run: |  
+          cd public-repo  
+           git config --global user.name "yhx"  
           git config --global user.email "2045399856@qq.com"  
+   
+      - name: Commit and push changes to public repo  
+        run: |  
+          cd public-repo  
           git add .  
-          git commit -m "Deploy from private repo"  
-          git push origin main
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          git commit -m "Deploy from private repo"    
+          git push -u origin main
+   
+    env:  
+      PUBLIC_REPO_PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
