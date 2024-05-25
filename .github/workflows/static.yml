@@ -1,0 +1,43 @@
+name: Deploy to Public Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout private repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: copy file
+        run: npm run copy
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to public repo
+        run: |
+          # Clone the public repo  
+          git clone https://github.com/yhx-yhx/yhx825-pdf-search-demo-dist.git yhx825-pdf-search-demo-dist
+          cd yhx825-pdf-search-demo-dist  
+
+          # Copy built files to public repo  
+          cp -r dist .
+
+          # Add, commit, and push changes to public repo  
+          git config --global user.name "yhx"  
+          git config --global user.email "2045399856@qq.com"  
+          git add .  
+          git commit -m "Deploy from private repo"  
+          git push origin main
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
