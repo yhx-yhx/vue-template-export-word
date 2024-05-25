@@ -23,7 +23,7 @@ jobs:
       - name: Deploy to public repo
         run: |
           # Clone the public repo  
-          git clone https://github.com/yhx-yhx/yhx825-pdf-search-demo-dist.git yhx825-pdf-search-demo-dist
+          git clone https://github.com/yhx-yhx/vue-template-export-word-dist.git yhx825-pdf-search-demo-dist
           cd yhx825-pdf-search-demo-dist  
 
           # Copy built files to public repo  
