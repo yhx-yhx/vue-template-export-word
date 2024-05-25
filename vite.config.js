@@ -1,7 +1,7 @@
 /*
  * @Author: yhx 2045399856@qq.com
  * @Date: 2024-05-23 09:05:27
- * @LastEditTime: 2024-05-25 22:32:45
+ * @LastEditTime: 2024-05-26 00:16:02
  * @FilePath: \vue-template-export-word\vite.config.js
  * @Description:
  *
@@ -15,7 +15,11 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }) => {
+  const env = loadEnv(mode, process.cwd())
+  const { VITE_APP_BASE_API } = env
+  console.log(VITE_APP_BASE_API)
   return {
+    base: VITE_APP_BASE_API,
     plugins: [vue(), vueJsx(), VueDevTools()],
     resolve: {
       alias: {
