@@ -17,9 +17,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: copy file
-        run: npm run copy
-
       - name: Build project
         run: npm run build
 
