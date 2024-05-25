@@ -26,10 +26,6 @@ jobs:
           repository: yhx-yhx/vue-template-export-word-dist
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  
           path: public-repo  
-  
-      - name: Copy built files to public repo  
-        run: |  
-          cp -r .vitepress/dist/* public-repo/  
    
       - name: Configure Git  
         run: |  
