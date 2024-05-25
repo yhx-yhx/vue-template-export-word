@@ -1,31 +1,14 @@
 <!--
  * @Author: yhx 2045399856@qq.com
  * @Date: 2024-05-23 09:05:27
- * @LastEditTime: 2024-05-25 20:35:09
+ * @LastEditTime: 2024-05-25 21:37:51
  * @FilePath: \vue-template-export-word\src\views\HomeView.vue
  * @Description: 
  * 
 -->
 <script setup>
-import { ExportBriefDataDocx, getBase64Sync, getImageSize } from '@/utils/templaterWord.js'
+import { ExportBriefDataDocx, getBase64Sync } from '@/utils/templaterWord.js'
 import imageDefault from "@/assets/image.png"
-const options = {
-  xAxis: {
-    type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [150, 230, 224, 218, 135, 147, 260],
-      type: 'line',
-      animation: false
-    }
-  ]
-}
-
 const listname = 'output'
 
 let data = {
@@ -56,7 +39,7 @@ let data = {
       dw: "点位3",
       tmd: "透明度3",
       rjy: "溶解氧3",
-      ad: "氨氮3",
+      ad: "氨氮4",
     },
   ]
 }
