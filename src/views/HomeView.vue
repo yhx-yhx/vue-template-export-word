@@ -1,14 +1,13 @@
 <!--
  * @Author: yhx 2045399856@qq.com
  * @Date: 2024-05-23 09:05:27
- * @LastEditTime: 2024-05-25 20:10:14
+ * @LastEditTime: 2024-05-25 20:35:09
  * @FilePath: \vue-template-export-word\src\views\HomeView.vue
  * @Description: 
  * 
 -->
 <script setup>
 import { ExportBriefDataDocx, getBase64Sync, getImageSize } from '@/utils/templaterWord.js'
-import { ElButton, ElLink, imageEmits } from "element-plus"
 import imageDefault from "@/assets/image.png"
 const options = {
   xAxis: {
