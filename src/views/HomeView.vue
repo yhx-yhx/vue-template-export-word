@@ -49,7 +49,7 @@ let imgurl1 = "http://yhx-yhx.github.io/noteplus-dist/logog.svg"
 const exportWordFile = async () => {
   console.log('exportWordFile');
   data.image1 = await getBase64Sync(imgurl1)
-  ExportBriefDataDocx("/template/testTemplater.docx", data, `${listname}.docx`);
+  ExportBriefDataDocx(import.env.meta.VITE_APP_BASE_API + "/template/testTemplater.docx", data, `${listname}.docx`);
 }
 
 </script>
