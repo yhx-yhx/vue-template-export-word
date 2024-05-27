@@ -36,6 +36,7 @@ jobs:
       - name: Commit and push changes to public repo  
         run: |  
           cd public-repo  
+          git pull
           git add .  
           git commit -m "Deploy from private repo"    
           git push -u origin main
